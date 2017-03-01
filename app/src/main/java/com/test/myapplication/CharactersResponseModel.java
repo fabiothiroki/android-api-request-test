@@ -8,9 +8,15 @@ import java.util.List;
 
 public class CharactersResponseModel {
 
-    public int count;
-    public String next;
-    public String previous;
-    public List<CharacterModel> results;
+    public final int count;
+    public final String next;
+    public final String previous;
+    public final List<CharacterModel> results;
 
+    public CharactersResponseModel(int count, String next, String previous, List<CharacterModel> results) {
+        this.count = count;
+        this.next = next;
+        this.previous = previous;
+        this.results = results;
+    }
 }
