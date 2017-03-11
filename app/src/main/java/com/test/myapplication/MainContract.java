@@ -14,7 +14,7 @@ public interface MainContract {
 
         void onFetchDataSuccess(CharactersResponseModel charactersResponseModel);
 
-        void onFetchDataError();
+        void onFetchDataError(Throwable e);
     }
 
     interface Presenter {
