@@ -2,12 +2,17 @@ package com.test.myapplication;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -36,12 +41,19 @@ public class MainPresenterTest {
             .thenReturn(Observable.just(charactersResponseModel));
 
         MainPresenter mainPresenter = new MainPresenter(
-            this.charactersDataSource,
-            Schedulers.immediate(),
-            Schedulers.immediate(),
-            this.view
+                this.charactersDataSource,
+                Schedulers.immediate(),
+                Schedulers.immediate(),
+                this.view
         );
 
+        mainPresenter.loadData();
+
+        InOrder inOrder = Mockito.inOrder(view);
+        inOrder.verify(view, times(1)).onFetchDataStarted();
+        inOrder.verify(view, times(1)).onFetchDataSuccess(charactersResponseModel);
+        inOrder.verify(view, times(1)).onFetchDataCompleted();
+        verify(view, never()).onFetchDataError();
     }
 
 }
