@@ -1,6 +1,7 @@
-package com.test.myapplication;
+package com.test.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.test.myapplication.model.validator.IsDefined;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class CharacterModel {
 
+    @IsDefined
     public final String name;
     public final String height;
     public final String mass;
