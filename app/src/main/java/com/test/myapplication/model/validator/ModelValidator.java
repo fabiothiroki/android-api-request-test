@@ -28,20 +28,26 @@ public class ModelValidator {
 
             modelField.setAccessible(true);
 
-            if (modelField.isAnnotationPresent(IsDefined.class)) {
+            validateIsDefinedField(modelField);
+        }
+    }
 
-                try {
-                    Object modelAttribute = modelField.get(model);
+    private void validateIsDefinedField(Field field) {
 
-                    if (modelAttribute == null) {
-                        throw new IllegalArgumentException(modelField + " is required");
-                    }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+        if (field.isAnnotationPresent(IsDefined.class)) {
+
+            Object modelAttribute = null;
+
+            try {
+                modelAttribute = field.get(model);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            if (modelAttribute == null) {
+                throw new IllegalArgumentException(field + " is required");
             }
 
         }
     }
-
 }
