@@ -3,7 +3,6 @@ package com.test.myapplication.model.validator;
 import android.support.annotation.NonNull;
 
 import java.lang.reflect.Field;
-import java.util.List;
 
 /**
  * Created by Indigo on 3/22/17.
@@ -29,39 +28,20 @@ public class ModelValidator {
 
             modelField.setAccessible(true);
 
-            if (!modelField.isAnnotationPresent(IsDefined.class)) {
-                continue;
-            }
+            if (modelField.isAnnotationPresent(IsDefined.class)) {
 
-            try {
-                Object modelAttribute = modelField.get(model);
+                try {
+                    Object modelAttribute = modelField.get(model);
 
-                if (modelAttribute == null) {
-                    throw new IllegalArgumentException(modelField + " is required");
-
-                } else if (modelAttribute instanceof List) {
-                    validateItemsFromListAttribute((List)modelAttribute);
-
-                } else if (!(modelAttribute instanceof Boolean)) {
-                    validateInnerAttribte(modelAttribute);
+                    if (modelAttribute == null) {
+                        throw new IllegalArgumentException(modelField + " is required");
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
                 }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
             }
 
         }
-    }
-
-    private void validateItemsFromListAttribute(@NonNull final List attributes) throws IllegalArgumentException{
-        for (Object objectFromList : attributes) {
-            ModelValidator itemListValidator = new ModelValidator(objectFromList);
-            itemListValidator.validate();
-        }
-    }
-
-    private void validateInnerAttribte(@NonNull final Object innerAttribute) throws IllegalArgumentException {
-        ModelValidator innerAttributeValidator = new ModelValidator(innerAttribute);
-        innerAttributeValidator.validate();
     }
 
 }
