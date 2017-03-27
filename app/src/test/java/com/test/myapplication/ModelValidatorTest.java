@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class ModelValidatorTest {
 
-    @Test
+    @Test()
     public void shouldNotThrowErrorOnValidCharacterModel() throws IllegalArgumentException {
         CharacterModel characterModel = new CharacterModel(
             "name",
@@ -37,7 +37,7 @@ public class ModelValidatorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void shouldNotThrowErrorOnInvalidCharacterModel() throws IllegalArgumentException {
+    public void shouldThrowErrorOnInvalidCharacterModel() throws IllegalArgumentException {
         CharacterModel characterModel = new CharacterModel(
                 null,
                 null,
@@ -60,6 +60,4 @@ public class ModelValidatorTest {
         ModelValidator validator = new ModelValidator(characterModel);
         validator.validate();
     }
-
-
 }

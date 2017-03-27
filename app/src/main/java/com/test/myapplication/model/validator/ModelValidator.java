@@ -22,10 +22,9 @@ public class ModelValidator {
             throw new IllegalArgumentException("Model cannot be null");
         }
 
-        final Field[] modelFields = model.getClass().getFields();
+        final Field[] modelFields = model.getClass().getDeclaredFields();
 
         for (Field modelField : modelFields) {
-
             validateIsDefinedField(modelField);
         }
     }
@@ -34,16 +33,16 @@ public class ModelValidator {
 
         if (field.isAnnotationPresent(IsDefined.class)) {
 
-            Object modelAttribute = null;
+            Object attributeValue = null;
             field.setAccessible(true);
 
             try {
-                modelAttribute = field.get(model);
+                attributeValue = field.get(model);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
 
-            if (modelAttribute == null) {
+            if (attributeValue == null) {
                 throw new IllegalArgumentException(field + " is required");
             }
 
