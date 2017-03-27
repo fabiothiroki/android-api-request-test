@@ -26,8 +26,6 @@ public class ModelValidator {
 
         for (Field modelField : modelFields) {
 
-            modelField.setAccessible(true);
-
             validateIsDefinedField(modelField);
         }
     }
