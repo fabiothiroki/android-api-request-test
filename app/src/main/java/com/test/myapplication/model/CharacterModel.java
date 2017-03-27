@@ -12,31 +12,31 @@ import java.util.List;
 public class CharacterModel {
 
     @IsDefined
-    public final String name;
-    public final String height;
-    public final String mass;
+    private final String name;
+    private final String height;
+    private final String mass;
 
     @SerializedName("hair_color")
-    public final String hairColor;
+    private final String hairColor;
 
     @SerializedName("skin_color")
-    public final String skinColor;
+    private final String skinColor;
 
     @SerializedName("eye_color")
-    public final String eyeColor;
+    private final String eyeColor;
 
     @SerializedName("birth_year")
-    public final String birthYear;
+    private final String birthYear;
 
-    public final String gender;
-    public final String homeworld;
-    public final List<String> films;
-    public final List<String> species;
-    public final List<String> vehicles;
-    public final List<String> starships;
-    public final String created;
-    public final String edited;
-    public final String url;
+    private final String gender;
+    private final String homeworld;
+    private final List<String> films;
+    private final List<String> species;
+    private final List<String> vehicles;
+    private final List<String> starships;
+    private final String created;
+    private final String edited;
+    private final String url;
 
     public CharacterModel(String name, String height, String mass, String hairColor, String skinColor, String eyeColor, String birthYear, String gender, String homeworld, List<String> films, List<String> species, List<String> vehicles, List<String> starships, String created, String edited, String url) {
         this.name = name;
@@ -55,5 +55,69 @@ public class CharacterModel {
         this.created = created;
         this.edited = edited;
         this.url = url;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public String getMass() {
+        return mass;
+    }
+
+    public String getHairColor() {
+        return hairColor;
+    }
+
+    public String getSkinColor() {
+        return skinColor;
+    }
+
+    public String getEyeColor() {
+        return eyeColor;
+    }
+
+    public String getBirthYear() {
+        return birthYear;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getHomeworld() {
+        return homeworld;
+    }
+
+    public List<String> getFilms() {
+        return films;
+    }
+
+    public List<String> getSpecies() {
+        return species;
+    }
+
+    public List<String> getVehicles() {
+        return vehicles;
+    }
+
+    public List<String> getStarships() {
+        return starships;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public String getEdited() {
+        return edited;
+    }
+
+    public String getUrl() {
+        return url;
     }
 }

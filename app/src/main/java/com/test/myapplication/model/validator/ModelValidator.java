@@ -35,6 +35,7 @@ public class ModelValidator {
         if (field.isAnnotationPresent(IsDefined.class)) {
 
             Object modelAttribute = null;
+            field.setAccessible(true);
 
             try {
                 modelAttribute = field.get(model);
