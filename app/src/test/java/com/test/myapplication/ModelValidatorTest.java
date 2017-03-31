@@ -1,6 +1,7 @@
 package com.test.myapplication;
 
 import com.test.myapplication.model.CharacterModel;
+import com.test.myapplication.model.CharacterModelBuilder;
 import com.test.myapplication.model.validator.ModelValidator;
 
 import org.junit.Test;
@@ -13,24 +14,10 @@ public class ModelValidatorTest {
 
     @Test()
     public void shouldNotThrowErrorOnValidCharacterModel() throws IllegalArgumentException {
-        CharacterModel characterModel = new CharacterModel(
-            "name",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        );
+        CharacterModelBuilder builder = new CharacterModelBuilder();
+        builder.setName("Han Solo");
+
+        CharacterModel characterModel = builder.build();
 
         ModelValidator validator = new ModelValidator(characterModel);
         validator.validate();
@@ -38,24 +25,10 @@ public class ModelValidatorTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldThrowErrorOnInvalidCharacterModel() throws IllegalArgumentException {
-        CharacterModel characterModel = new CharacterModel(
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+        CharacterModelBuilder builder = new CharacterModelBuilder();
+        builder.setName(null);
+
+        CharacterModel characterModel = builder.build();
 
         ModelValidator validator = new ModelValidator(characterModel);
         validator.validate();
