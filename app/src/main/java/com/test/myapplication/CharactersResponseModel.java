@@ -1,5 +1,7 @@
 package com.test.myapplication;
 
+import com.test.myapplication.model.CharacterModel;
+
 import java.util.List;
 
 /**
