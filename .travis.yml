@@ -15,5 +15,5 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
-  script:
-   - ./gradlew test
+script:
+  - ./gradlew test
